@@ -1,0 +1,24 @@
+.layout .ant-layout-sider-trigger {
+  background-color: #1890ff; }
+
+.layout .ant-layout-sider-children {
+  background-color: white; }
+  .layout .ant-layout-sider-children .logo {
+    background-color: #1890ff;
+    padding: 21px 21px 22px 21px;
+    color: white; }
+    .layout .ant-layout-sider-children .logo span {
+      font-weight: 600; }
+    .layout .ant-layout-sider-children .logo #logo-expanded {
+      font-size: 60px;
+      transition: 0.2s; }
+    .layout .ant-layout-sider-children .logo #logo-collapsed {
+      font-size: 15px; }
+
+.layout .layout-header {
+  border-left: solid 2px white;
+  background-color: #1890ff; }
+  .layout .layout-header .header-logo {
+    color: #1890ff; }
+  .layout .layout-header .header-title {
+    color: white; }

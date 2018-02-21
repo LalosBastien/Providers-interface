@@ -1,0 +1,38 @@
+.layout {
+  .ant-layout-sider-trigger{
+    background-color: #1890ff;
+  }
+  .ant-layout-sider-children{
+    background-color: white;
+    .logo{
+      background-color: #1890ff;
+      padding: 21px 21px 22px 21px;
+
+      color: white;
+      span{
+        font-weight:600;
+      }
+      #logo-expanded{
+        font-size: 60px;
+        transition: 0.2s;
+      }
+      #logo-collapsed{
+        font-size: 15px;
+      }
+    }
+  }
+  //.ant-layout-content{
+  //    margin: 50px 350px 50px 350px!important;
+  //}
+  .layout-header{
+    border-left: solid 2px white;
+    background-color: #1890ff;
+    .header-logo{
+      color: #1890ff;
+    }
+    .header-title
+    {
+      color: white;
+    }
+  }
+}
