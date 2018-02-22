@@ -2,5 +2,14 @@
   margin: 1%!important;
   .list-tile{
     margin-bottom: 25px;
+    .tiles-logo{
+      font-size: 25px;
+    }
+    .tiles-content-title{
+      text-align: left;
+    }
+    .tiles-content-value{
+      text-align: center;
+    }
   }
 }
