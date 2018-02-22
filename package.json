@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.2.1",
+    "eip808-sdk": "git+https://github.com/LalosBastien/node-eip808-sdk.git",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
