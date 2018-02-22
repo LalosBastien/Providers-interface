@@ -45,21 +45,6 @@ const routes = [
                 }
             ]
     }
-    // ,
-    // {
-    //     path: "/tacos",
-    //     component: Tacos,
-    //     routes: [
-    //         {
-    //             path: "/tacos/bus",
-    //             component: Bus
-    //         },
-    //         {
-    //             path: "/tacos/cart",
-    //             component: Cart
-    //         }
-    //     ]
-    // }
 ];
 
 // wrap <Route> and use this everywhere instead, then when
