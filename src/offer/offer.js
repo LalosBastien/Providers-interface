@@ -1,14 +1,17 @@
 /**
-* Created by MisterGreen on 21/02/2018.
-*/
+ * Created by MisterGreen on 21/02/2018.
+ */
 import React from "react";
 import { Form, Input, InputNumber, DatePicker, Icon, Select, Row, Col, Button, AutoComplete } from 'antd';
-// import  from 'eip808-sdk'
+import PicturesWall from '../utils/picturesWall';
+
 import './offer.css';
 
 import {ipfs as IPFS} from "eip808-sdk/lib";
 
 const FormItem = Form.Item;
+const { TextArea } = Input;
+const Option = Select.Option;
 
 class AvailabilityForm extends React.Component {
   constructor() {
@@ -17,7 +20,7 @@ class AvailabilityForm extends React.Component {
     this.captureFile = ipfs.captureFile.bind(this);
     this.saveToIpfs = ipfs.saveToIpfs.bind(this);
     this.arrayBufferToString = ipfs.arrayBufferToString.bind(this);
-    this.handleSubmit = ipfs.handleSubmit.bind(this);
+    this.handleSubmit2 = ipfs.handleSubmit.bind(this);
     this.state = {};
   }
   onChange = (value) => {
@@ -36,136 +39,203 @@ class AvailabilityForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
 
-    return (
-      <Row className="offers">
-        <div>
-          <form id='captureMedia' onSubmit={this.handleSubmit}>
-            <input type='file' onChange={this.captureFile} />
-          </form>
-          <div>
-            <a target='_blank'
-              href={'https://ipfs.io/ipfs/' + this.state.added_file_hash}>
-              {this.state.added_file_hash}
-            </a>
-          </div>
-        </div>
-        <Row className="offers-header">
-          <Col span={12}>
-            <Col span={3}  className="offers-logo">
-              <Icon type="form" />
-            </Col>
-            <Col span={18} className="offers-title">
-              <span>Ajouter une offre</span>
-            </Col>
-          </Col>
-        </Row>
-        <Form onSubmit={this.handleSubmit} className="login-form">
-          <Row >
-            <Col span={8} offset={4}>
-              <span>Min Deposit</span>
-              <FormItem wrapperCol={{span: 24}}>
-                {getFieldDecorator('_minDeposit', {
-                  rules: [{ required: true, message: 'Please input Min Deposit!' }],
-                })(
-                  <InputNumber
-                    min={0}
-                    defaultValue={0}
-                    onChange={this.onChange}
-                    placeholder="0€"/>
-                  )}
-                </FormItem>
-              </Col>
-              <Col span={8} >
-                <span>End Date</span>
-                <FormItem>
-                  {getFieldDecorator('_endDateTs', {
-                    rules: [{ required: true, message: 'Please input a end date!' }],
-                  })(
-                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                  )}
-                </FormItem>
-              </Col>
-            </Row>
-            <Row >
-              <Col span={8} offset={4}>
-                <span>Quantity</span>
-                <FormItem>
-                  {getFieldDecorator('_quantity', {
-                    rules: [{ required: true, message: 'Please input your Password!' }],
-                  })(
-                    <InputNumber
-                      min={0}
-                      defaultValue={0}
-                      onChange={this.onChange}
-                      placeholder="0"/>
-                    )}
-                  </FormItem>
-                </Col>
-                <Col span={8} >
-                  <span>Start Date</span>
-                  <FormItem>
-                    {getFieldDecorator('_startDateTs', {
-                      rules: [{ required: true, message: 'Please input a start date!' }],
-                    })(
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                    )}
-                  </FormItem>
-                </Col>
-              </Row>
-              <Row >
-                <Col span={8} offset={4}>
-                  <span>Commission</span>
-                  <FormItem>
-                    {getFieldDecorator('_comission', {
-                      rules: [{ required: true, message: 'Please input your commission!' }],
-                    })(
-                      <InputNumber
-                        min={0}
-                        defaultValue={0}
-                        onChange={this.onChange}
-                        placeholder="0€"/>
-                      )}
-                    </FormItem>
-                  </Col>
-                  <Col span={8} >
-                    <span>Cancel Date</span>
-                    <FormItem>
-                      {getFieldDecorator('_freeCancelDateTs', {
-                        rules: [{ required: true, message: 'Please input a free cancel date!' }],
-                      })(
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                      )}
-                    </FormItem>
-                  </Col>
+        return (
+            <Row className="offers">
+                <div>
+                    <form id='captureMedia' onSubmit={this.handleSubmit}>
+                        <input type='file' onChange={this.captureFile} />
+                    </form>
+                    <div>
+                        <a target='_blank'
+                           href={'https://ipfs.io/ipfs/' + this.state.added_file_hash}>
+                            {this.state.added_file_hash}
+                        </a>
+                    </div>
+                </div>
+                <Row className="offers-header">
+                    <Col span={24}>
+                        <Col span={3}  className="offers-logo">
+                            <Icon type="form" />
+                        </Col>
+                        <Col span={19} className="offers-title">
+                            <span>Ajouter une offre</span>
+                        </Col>
+                    </Col>
                 </Row>
-                <Row >
-                  <Col span={8} offset={8}>
-                    <span>Metadata Link</span>
-                    <FormItem>
-                      {getFieldDecorator('metaDataLink', {
-                        rules: [{ required: true, message: 'Please input some metadata!' }],
-                      })(
-                        <Input prefix={<Icon type="api" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Metadata" />
-                      )}
-                    </FormItem>
-                  </Col>
-                </Row>
-                <FormItem>
-                  {getFieldDecorator('remember', {
-                    valuePropName: 'checked',
-                    initialValue: true,
-                  })}
+                <Form onSubmit={this.handleSubmit} className="login-form">
+                    <Row>
+                        <Col span={12} offset={6} className="form-data">
+                                <span>Données</span>
+                        </Col>
+                        <Col span={12} offset={6}>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Min Deposit</span>
+                                    <FormItem >
+                                        {getFieldDecorator('_minDeposit', {
+                                            rules: [{ required: true, message: 'Please input Min Deposit!' }],
+                                        })(
+                                            <InputNumber
+                                                style={{width : '100%'}}
+                                                min={0}
+                                                onChange={this.onChange}
+                                                placeholder="0€"/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>End Date</span>
+                                    <FormItem>
+                                        {getFieldDecorator('_endDateTs', {
+                                            rules: [{ required: true, message: 'Please input a end date!' }],
+                                        })(
+                                            <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row  gutter={25}>
+                                <Col  xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Quantity</span>
+                                    <FormItem>
+                                        {getFieldDecorator('_quantity', {
+                                            rules: [{ required: true, message: 'Please input your Password!' }],
+                                        })(
+                                            <InputNumber
+                                                style={{width : '100%'}}
+                                                min={0}
+                                                onChange={this.onChange}
+                                                placeholder="0"/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Start Date</span>
+                                    <FormItem>
+                                        {getFieldDecorator('_startDateTs', {
+                                            rules: [{ required: true, message: 'Please input a start date!' }],
+                                        })(
+                                            <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Commission</span>
+                                    <FormItem>
+                                        {getFieldDecorator('_comission', {
+                                            rules: [{ required: true, message: 'Please input your commission!' }],
+                                        })(
+                                            <InputNumber
+                                                style={{width : '100%'}}
+                                                min={0}
 
-                  <Button size="large" type="primary" htmlType="submit" className="button-submit">
-                    Créer une offre
-                  </Button>
-                </FormItem>
-              </Form>
+                                                onChange={this.onChange}
+                                                placeholder="0€"/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Cancel Date</span>
+                                    <FormItem>
+                                        {getFieldDecorator('_freeCancelDateTs', {
+                                            rules: [{ required: true, message: 'Please input a free cancel date!' }],
+                                        })(
+                                            <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={12} offset={6} className="form-data">
+                            <span>Meta-données</span>
+                        </Col>
+                        <Col span={12} offset={6}>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Name</span>
+                                    <FormItem>
+                                        {getFieldDecorator('name')(
+                                            <Input placeholder="Name" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Type</span>
+                                    <FormItem>
+                                        {getFieldDecorator('type')(
+                                            <Select placeholder="Type">
+                                                <Option value="hotels">Hotels</Option>
+                                                <Option value="apartment">Apartment</Option>
+                                                <Option value="house">House</Option>
+                                                <Option value="villa">Villa</Option>
+                                            </Select>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Travelers</span>
+                                    <FormItem>
+                                        {getFieldDecorator('travelers')(
+                                            <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of travelers" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Beds</span>
+                                    <FormItem>
+                                        {getFieldDecorator('beds')(
+                                            <InputNumber style={{width : '100%'}} min={1} max={100} placeholder="Number of beds"/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Rooms</span>
+                                    <FormItem>
+                                        {getFieldDecorator('rooms')(
+                                            <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of rooms" />
+                                        )}
+                                    </FormItem>
+                                </Col>
+                                <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
+                                    <span>Parking</span>
+                                    <FormItem>
+                                        {getFieldDecorator('parking')(
+                                            <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of parking"/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                            <Row gutter={25}>
+                                <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
+                                    <span>Pictures</span>
+                                    <FormItem>
+                                        {getFieldDecorator('pictures')(
+                                            <PicturesWall/>
+                                        )}
+                                    </FormItem>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <FormItem>
+                            <Button type="primary" htmlType="submit" className="login-form-button">
+                                Create
+                            </Button>
+                        </FormItem>
+                    </Row>
+                </Form>
             </Row>
           );
         }
       }
 
-      const WrappedAvailabilityForm = Form.create()(AvailabilityForm);
+const WrappedAvailabilityForm = Form.create()(AvailabilityForm);
 
-      export default WrappedAvailabilityForm;
+export default WrappedAvailabilityForm;

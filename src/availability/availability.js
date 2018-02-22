@@ -35,7 +35,7 @@ const columns = [{
     width: 100,
 }, {
     title: 'Accepted',
-    dataIndex: 'metaDataLink',
+    dataIndex: 'accepted',
     width: 100,
 }];
 
@@ -50,6 +50,7 @@ for (let i = 0; i < 100; i++) {
         endDateTs: '2018-02-08 17:57:59',
         quantity: 6,
         metaDataLink: "Link",
+        accepted: "accepted"
     });
 }
 
