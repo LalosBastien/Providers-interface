@@ -16,8 +16,8 @@ class List extends React.Component{
     componentDidMount() {
         this.setState({
             level: [
-                [1 , {
-                    name: 'offre1',
+                [0 , {
+                    name: 'offre 1',
                     type: 'house',
                     travelers: 2,
                     beds: 2,
@@ -25,8 +25,17 @@ class List extends React.Component{
                     parking: 2
 
                 }],
+                [1, {
+                    name: 'offre 2',
+                    type: 'appartement',
+                    travelers: 2,
+                    beds: 2,
+                    rooms: 2,
+                    parking: 2
+
+                }],
                 [2, {
-                    name: 'offre2',
+                    name: 'offre 3',
                     type: 'appartement',
                     travelers: 2,
                     beds: 2,
@@ -35,7 +44,7 @@ class List extends React.Component{
 
                 }],
                 [3, {
-                    name: 'offre2',
+                    name: 'offre 4',
                     type: 'appartement',
                     travelers: 2,
                     beds: 2,
@@ -44,16 +53,7 @@ class List extends React.Component{
 
                 }],
                 [4, {
-                    name: 'offre2',
-                    type: 'appartement',
-                    travelers: 2,
-                    beds: 2,
-                    rooms: 2,
-                    parking: 2
-
-                }],
-                [5, {
-                    name: 'offre2',
+                    name: 'offre 5',
                     type: 'appartement',
                     travelers: 2,
                     beds: 2,
@@ -66,23 +66,57 @@ class List extends React.Component{
     }
 
     render(){
-        console.log(this.state.level);
+        const level = this.state.level;
         return(
             <Row className="list">
                 <Col span={24}>
                     <Row gutter={20} className="list-tiles">
                         {
                             this.state.level.map((item, index) => (
-                                <Col xs={24} sm={24} md={12} lg={6} xl={8} xxl={6} className="list-tile">
+                                <Col xs={24} sm={24} md={12} lg={8} xl={6} xxl={6} className="list-tile">
                                     <Card
-                                        style={{ width: 300 }}
+                                        style={{ width: '100%' }}
+                                        // todo change URL here by item[1].linkPhoto
                                         cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
                                         actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
-                                    >
+                                    >{console.log(item ,  "=====" + index)}
                                         <Meta
-                                            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                            title="Card title"
-                                            description="This is the description"
+
+                                            title={item[1].name}
+                                            description={
+                                                <Row>
+                                                    <Col span={12} className="tiles-content-title">
+                                                        <span>Type</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-value">
+                                                        <span>{item[1].type}</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-title">
+                                                        <span>Travelers</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-value">
+                                                        <span>{item[1].travelers}</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-title">
+                                                        <span>Rooms</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-value">
+                                                        <span>{item[1].rooms}</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-title">
+                                                        <span>Beds</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-value">
+                                                        <span>{item[1].beds}</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-title">
+                                                        <span>Parking</span>
+                                                    </Col>
+                                                    <Col span={12} className="tiles-content-value">
+                                                        <span>{item[1].parking}</span>
+                                                    </Col>
+                                                </Row>
+                                            }
                                         />
                                     </Card>
                                 </Col>
