@@ -72,7 +72,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Min Deposit</span>
                                     <FormItem >
-                                        {getFieldDecorator('_minDeposit', {
+                                        {getFieldDecorator('data._minDeposit', {
                                             rules: [{ required: true, message: 'Please input Min Deposit!' }],
                                         })(
                                             <InputNumber
@@ -86,7 +86,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>End Date</span>
                                     <FormItem>
-                                        {getFieldDecorator('_endDateTs', {
+                                        {getFieldDecorator('data._endDateTs', {
                                             rules: [{ required: true, message: 'Please input a end date!' }],
                                         })(
                                             <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
@@ -98,7 +98,7 @@ class AvailabilityForm extends React.Component {
                                 <Col  xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Quantity</span>
                                     <FormItem>
-                                        {getFieldDecorator('_quantity', {
+                                        {getFieldDecorator('data._quantity', {
                                             rules: [{ required: true, message: 'Please input your Password!' }],
                                         })(
                                             <InputNumber
@@ -112,7 +112,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Start Date</span>
                                     <FormItem>
-                                        {getFieldDecorator('_startDateTs', {
+                                        {getFieldDecorator('data._startDateTs', {
                                             rules: [{ required: true, message: 'Please input a start date!' }],
                                         })(
                                             <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
@@ -124,7 +124,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Commission</span>
                                     <FormItem>
-                                        {getFieldDecorator('_comission', {
+                                        {getFieldDecorator('data._comission', {
                                             rules: [{ required: true, message: 'Please input your commission!' }],
                                         })(
                                             <InputNumber
@@ -139,7 +139,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Cancel Date</span>
                                     <FormItem>
-                                        {getFieldDecorator('_freeCancelDateTs', {
+                                        {getFieldDecorator('data._freeCancelDateTs', {
                                             rules: [{ required: true, message: 'Please input a free cancel date!' }],
                                         })(
                                             <DatePicker style={{width : '100%'}} showTime format="YYYY-MM-DD HH:mm:ss" />
@@ -156,7 +156,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Name</span>
                                     <FormItem>
-                                        {getFieldDecorator('name')(
+                                        {getFieldDecorator('meta.name')(
                                             <Input placeholder="Name" />
                                         )}
                                     </FormItem>
@@ -164,7 +164,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Type</span>
                                     <FormItem>
-                                        {getFieldDecorator('type')(
+                                        {getFieldDecorator('meta.type')(
                                             <Select placeholder="Type">
                                                 <Option value="hotels">Hotels</Option>
                                                 <Option value="apartment">Apartment</Option>
@@ -179,7 +179,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Travelers</span>
                                     <FormItem>
-                                        {getFieldDecorator('travelers')(
+                                        {getFieldDecorator('meta.travelers')(
                                             <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of travelers" />
                                         )}
                                     </FormItem>
@@ -187,7 +187,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Beds</span>
                                     <FormItem>
-                                        {getFieldDecorator('beds')(
+                                        {getFieldDecorator('meta.beds')(
                                             <InputNumber style={{width : '100%'}} min={1} max={100} placeholder="Number of beds"/>
                                         )}
                                     </FormItem>
@@ -197,7 +197,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Rooms</span>
                                     <FormItem>
-                                        {getFieldDecorator('rooms')(
+                                        {getFieldDecorator('meta.rooms')(
                                             <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of rooms" />
                                         )}
                                     </FormItem>
@@ -205,7 +205,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={12} xl={12} xxl={12}>
                                     <span>Parking</span>
                                     <FormItem>
-                                        {getFieldDecorator('parking')(
+                                        {getFieldDecorator('meta.parking')(
                                             <InputNumber style={{width : '100%'}} min={1} max={100}  placeholder="Number of parking"/>
                                         )}
                                     </FormItem>
@@ -215,7 +215,7 @@ class AvailabilityForm extends React.Component {
                                 <Col xs={24} sm={24} md={24} lg={24} xl={24} xxl={24}>
                                     <span>Pictures</span>
                                     <FormItem>
-                                        {getFieldDecorator('pictures')(
+                                        {getFieldDecorator('meta.pictures')(
                                             <PicturesWall/>
                                         )}
                                     </FormItem>

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Layout from './menu/layout';
 import Offer from './offer/offer';
+import List from './list/list';
 import Availability from './availability/availability';
 import './App.css';
 
@@ -42,6 +43,11 @@ const routes = [
                 {
                     path: "/availability",
                     component: Availability
+                }
+                ,
+                {
+                    path: "/list",
+                    component: List
                 }
             ]
     }

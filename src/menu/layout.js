@@ -63,28 +63,19 @@ class SiderDemo extends React.Component {
                         <Menu.Item key="2">
                             <Link to="/availability">
                                 <Icon type="tags" />
-                                <span>Liste des offres</span>
+                                <span>Réservations</span>
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <Link to="/list">
+                                <Icon type="tags" />
+                                <span>Offres</span>
                             </Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout>
-                    <Header className="layout-header">
-                        {/*<Col span={8}>*/}
-                            {/*<Col span={2} className="header-logo">*/}
-                                {/*<Icon type="profile"/>*/}
-                            {/*</Col>*/}
-                            {/*<Col span={8} className="header-title">*/}
-                                {/*<span>Créer une offre</span>*/}
-                            {/*</Col>*/}
-                        {/*</Col>*/}
-                        {/*<Col span={8}>*/}
-
-                        {/*</Col>*/}
-                        {/*<Col span={8}>*/}
-
-                        {/*</Col>*/}
-                    </Header>
+                    <Header className="layout-header"/>
                     <Content style={{ margin: '0 16px' }}>
                         {this.props.routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
                     </Content>
