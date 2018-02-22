@@ -235,13 +235,6 @@ class AvailabilityForm extends React.Component {
                           )}
                         </FormItem>
                         <input type='file' onChange={this.captureFile} />
-                        <div>
-                          <a target='_blank'
-                            href={'https://ipfs.io/ipfs/' + this.state.added_file_hash}>
-                            {this.state.added_file_hash}
-                          </a>
-                        </div>
-
                       </Col>
                     </Row>
                   </Col>
