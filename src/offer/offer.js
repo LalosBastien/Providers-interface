@@ -3,7 +3,7 @@
 */
 import React from "react";
 import { Form, Input, InputNumber, DatePicker, Icon, Select, Row, Col, Button, AutoComplete } from 'antd';
-import {ipfs as IPFS} from "eip808-sdk/lib";
+import {ipfs as IPFS} from "eip808-sdk";
 import PicturesWall from '../utils/picturesWall';
 
 const FormItem = Form.Item;
