@@ -2,6 +2,10 @@
   margin: 1% !important; }
   .list .list-tile {
     margin-bottom: 25px; }
+    .list .list-tile img {
+      width: auto;
+      height: 150px;
+      margin: 0 auto; }
     .list .list-tile .tiles-logo {
       font-size: 25px; }
     .list .list-tile .tiles-content-title {
