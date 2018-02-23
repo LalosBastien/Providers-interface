@@ -3,7 +3,7 @@
 */
 import React from "react";
 import { Form, Input, InputNumber, DatePicker, Icon, Select, Row, Col, Button, AutoComplete } from 'antd';
-import {ipfs as IPFS} from "eip808-sdk";
+import {ipfs as IPFS, RES} from "eip808-sdk";
 import PicturesWall from '../utils/picturesWall';
 
 const FormItem = Form.Item;
@@ -16,7 +16,10 @@ let ipfsJson = {};
 class AvailabilityForm extends React.Component {
   constructor() {
     super();
+    
     // const ipfs = new IPFS('localhost', '5001', this);
+    console.log("Testing")
+    RES.then(e => console.log("TEST", e))
     const ipfs = new IPFS(ipfsDomain, '5001', this.onImageUploaded, this.onDataUploaded);
     this.captureFile = ipfs.captureFile.bind(this);
     this.saveFileToIpfs = ipfs.saveFileToIpfs.bind(this);
@@ -27,6 +30,7 @@ class AvailabilityForm extends React.Component {
   }
 
   onImageUploaded = (imageHash) => {
+    RES.then(res => {  console.log("RESSSSS", res)}).catch(err => console.log("ERRRRRRR", err))
     console.log("IMAGE HASH", imageHash);
     // ipfsJson["imageUrl"] = `http://${ipfsDomain}/ipfs/${imageHash}`;
     ipfsJson["imageUrl"] = `https://ipfs.io/ipfs/${imageHash}`;
@@ -34,6 +38,7 @@ class AvailabilityForm extends React.Component {
   }
 
   onDataUploaded = (dataHash) => {
+
     console.log("DATA HASH", dataHash);
   }
 
@@ -53,9 +58,32 @@ class AvailabilityForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    this.props.form.validateFieldsAndScroll(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // this.RES.publishAvailability(values.data, '0xf17f52151ebef6c7334fad080c5704d77216b732', 'ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f').then(e => {
+        //   console.log("cdfjvbhejnekdsnjd fsdk,");
+        // })
+      let o = {
+        _resourceId: 1,
+        _type: 0,
+        _minDeposit: values._minDeposit,
+        _commission: values._comission,  
+        _startDateTs: Date.parse(values._startDateTs),
+        _endDateTs: Date.parse(values._endDateTs),
+        _freeCancelDateTs: Date.parse(values._freeCancelDateTs),
+        _quantity: values._quantity,
+        _metaDataLink: "cdf"
+      }
+  
+     fetch(`http://localhost:3000/api/publishAvailability`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(o),
+      }).then(console.log("enfin!!!")).catch(e=>console.log(e))
+
+        console.log('Received values of form: ', values,  JSON.stringify(o));
       }
       console.log("===== JSON DATA : ", ipfsJson);
       this.createJSON(values);

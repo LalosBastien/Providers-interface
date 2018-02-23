@@ -14,6 +14,7 @@ class List extends React.Component{
     };
 
     componentDidMount() {
+        
         this.setState({
             level: [
                 [0 , {

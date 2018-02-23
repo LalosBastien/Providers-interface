@@ -2,3 +2,9 @@
   margin: 1% !important; }
   .list .list-tile {
     margin-bottom: 25px; }
+    .list .list-tile .tiles-logo {
+      font-size: 25px; }
+    .list .list-tile .tiles-content-title {
+      text-align: left; }
+    .list .list-tile .tiles-content-value {
+      text-align: center; }

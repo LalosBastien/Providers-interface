@@ -60,12 +60,33 @@ class List extends React.Component {
         confirmDirty: false,
         autoCompleteResult: [],
     };
-    render() {
 
+    componentDidMount() {
+        return fetch('http://127.0.0.1:3000/api/ListAvailabilities')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log("response", data);
+                data.map(function(availability) {
+                    Object.keys(availability).forEach(function (key) {
+                        availability[key.substring(1)] = availability[key];
+                        availability[key] = undefined
+                     });
+                    availability.accepted = 'accepted'
+                    availability.key = availability.ID
+                 });
+                this.setState({data});
+            })
+            .catch((error) => {
+            console.error(error);
+        });
+    }
+    render() {
+        const datas = this.state.data;
+        console.log(datas)
         return (
             <Row className="availability">
                 <Col span={24}>
-                    <Table columns={columns} dataSource={data} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
+                    <Table columns={columns} dataSource={datas} pagination={{ pageSize: 50 }} scroll={{ y: 240 }} />
                 </Col>
             </Row>
         );
