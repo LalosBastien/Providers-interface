@@ -12,11 +12,13 @@ const Option = Select.Option;
 const ipfsDomain = 'ipfs.cloudapp.net';
 
 let ipfsJson = {};
+let metaHash;
+let _values;
 
 class AvailabilityForm extends React.Component {
   constructor() {
     super();
-    
+
     // const ipfs = new IPFS('localhost', '5001', this);
     console.log("Testing")
     RES.then(e => console.log("TEST", e))
@@ -40,6 +42,27 @@ class AvailabilityForm extends React.Component {
   onDataUploaded = (dataHash) => {
 
     console.log("DATA HASH", dataHash);
+
+    let o = {
+      _resourceId: 1,
+      _type: 0,
+      _minDeposit: _values._minDeposit,
+      _commission: _values._comission,
+      _startDateTs: Date.parse(_values._startDateTs),
+      _endDateTs: Date.parse(_values._endDateTs),
+      _freeCancelDateTs: Date.parse(_values._freeCancelDateTs),
+      _quantity: _values._quantity,
+      _metaDataLink: dataHash
+    }
+
+    fetch(`http://localhost:3000/api/publishAvailability`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(o),
+    }).then(() => {console.log("enfin!!!"); alert('success')}).catch(e=>console.log(e))
+
   }
 
   onChange = (value) => {
@@ -63,27 +86,7 @@ class AvailabilityForm extends React.Component {
         // this.RES.publishAvailability(values.data, '0xf17f52151ebef6c7334fad080c5704d77216b732', 'ae6ae8e5ccbfb04590405997ee2d52d2b330726137b875053c36d94e974d162f').then(e => {
         //   console.log("cdfjvbhejnekdsnjd fsdk,");
         // })
-      let o = {
-        _resourceId: 1,
-        _type: 0,
-        _minDeposit: values._minDeposit,
-        _commission: values._comission,  
-        _startDateTs: Date.parse(values._startDateTs),
-        _endDateTs: Date.parse(values._endDateTs),
-        _freeCancelDateTs: Date.parse(values._freeCancelDateTs),
-        _quantity: values._quantity,
-        _metaDataLink: "cdf"
-      }
-  
-     fetch(`http://localhost:3000/api/publishAvailability`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(o),
-      }).then(console.log("enfin!!!")).catch(e=>console.log(e))
-
-        console.log('Received values of form: ', values,  JSON.stringify(o));
+        _values = values;
       }
       console.log("===== JSON DATA : ", ipfsJson);
       this.createJSON(values);
